@@ -23,7 +23,7 @@ public class Main {
 
     private static MutableValueGraph initGraph(MutableValueGraph graph) {
         try {
-            Scanner sc = new Scanner(new File("graph.txt"));
+            Scanner sc = new Scanner(new File("graph_lab1.txt"));
             while (sc.hasNextLine()) {
                 String[] line = sc.nextLine().split(" ");
                 int[] values = Arrays.stream(line).mapToInt(Integer::parseInt).toArray();
