@@ -95,7 +95,7 @@ public class PostmanProblem {
     }
 
     void findUnbalanced() {
-        int nn = 0, np = 0; // number of vertices of negative/positive delta
+        int nn = 0, np = 0;
 
         for (int i = 0; i < N; i++)
             if (delta[i] < 0) nn++;
@@ -209,34 +209,19 @@ public class PostmanProblem {
         }
     }
 
-
-    static public void main(String args[]) {
-        PostmanProblem G = new PostmanProblem(5); // create a graph of four vertices
-        G = initGraph(G);
-
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        G.solve();
-        G.printCPT(0);
-        System.out.println("Загальна вартість = " + G.cost());
-    }
-
-    private static PostmanProblem initGraph(PostmanProblem graph) {
+    public void initGraph() {
         try {
             Scanner sc = new Scanner(new File("graph_lab2.txt"));
             while (sc.hasNextLine()) {
                 String[] line = sc.nextLine().split(" ");
                 Object[] values = Arrays.stream(line).toArray();
 
-                graph.addArc(values[0].toString(), convertToInt(values[1]), convertToInt(values[2]), convertToInt(values[3]));
+                addArc(values[0].toString(), convertToInt(values[1]), convertToInt(values[2]), convertToInt(values[3]));
             }
 
-            return graph;
         }
         catch(IOException ex){
             System.out.println(ex.getMessage());
-            return null;
         }
     }
 
