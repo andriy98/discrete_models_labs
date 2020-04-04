@@ -13,6 +13,9 @@ public class Main {
         MutableValueGraph graph = ValueGraphBuilder.undirected().build();
         Main.initGraph(graph);
         BoruvkaMST boruvkaMST = new BoruvkaMST(graph);
+        System.out.println();
+        System.out.println();
+
         System.out.println("Результат:");
         System.out.println();
         System.out.println(boruvkaMST.toString());
