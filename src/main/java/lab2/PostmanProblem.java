@@ -1,5 +1,7 @@
 package lab2;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 public class PostmanProblem {
@@ -210,15 +212,7 @@ public class PostmanProblem {
 
     static public void main(String args[]) {
         PostmanProblem G = new PostmanProblem(5); // create a graph of four vertices
-
-        // add the arcs for the example graph
-           G.addArc("a", 0, 1, 1)
-            .addArc("b", 1, 2, 1)
-            .addArc("c", 2, 0, 1)
-            .addArc("d", 2, 3, 1)
-            .addArc("e", 3, 4, 1)
-            .addArc("f", 4, 2, 1);
-
+        G = initGraph(G);
 
         System.out.println();
         System.out.println();
@@ -226,5 +220,27 @@ public class PostmanProblem {
         G.solve();
         G.printCPT(0);
         System.out.println("Загальна вартість = " + G.cost());
+    }
+
+    private static PostmanProblem initGraph(PostmanProblem graph) {
+        try {
+            Scanner sc = new Scanner(new File("graph_lab2.txt"));
+            while (sc.hasNextLine()) {
+                String[] line = sc.nextLine().split(" ");
+                Object[] values = Arrays.stream(line).toArray();
+
+                graph.addArc(values[0].toString(), convertToInt(values[1]), convertToInt(values[2]), convertToInt(values[3]));
+            }
+
+            return graph;
+        }
+        catch(IOException ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    private static int convertToInt(Object value) {
+        return Integer.parseInt(value.toString());
     }
 }
